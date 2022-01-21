@@ -1,0 +1,13 @@
+{
+  "name": "YourplacesBackend",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "git@github.com:jeanlouisHERVE/YOURPLACES-PROJECT-BACKEND.git",
+  "author": "jeanlouisHERVE <jeanlouis.herve@hotmail.fr>",
+  "license": "MIT",
+  "dependencies": {
+    "body-parser": "^1.19.1",
+    "express": "^4.17.2",
+    "nodemon": "^2.0.15"
+  }
+}
