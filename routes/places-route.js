@@ -16,9 +16,12 @@ const DUMMY_PLACES = [
     }
 ]
 
-router.get('/', (req, res, next) => {
-    console.log('GET Request in Places')
-    res.json({message: 'It works'});
+router.get('/:id', (req, res, next) => {
+    const placeId = req.params.id;
+    const place = DUMMY_PLACES.find(p => {
+        return p.id === placeId;
+    });
+    res.json({place}); //=> {place } === { place : place}
 }) 
 
 module.exports = router; 
