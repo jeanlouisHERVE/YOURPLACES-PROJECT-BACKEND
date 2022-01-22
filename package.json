@@ -1,7 +1,11 @@
 {
-  "name": "YourplacesBackend",
+  "name": "yourplacesbackend",
   "version": "1.0.0",
   "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
   "repository": "git@github.com:jeanlouisHERVE/YOURPLACES-PROJECT-BACKEND.git",
   "author": "jeanlouisHERVE <jeanlouis.herve@hotmail.fr>",
   "license": "MIT",
