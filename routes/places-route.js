@@ -4,7 +4,7 @@ const router = express.Router();
 
 const DUMMY_PLACES = [
     {
-        pid: 'p1',
+        id: 'p1',
         title: 'Empire State Building',
         description: 'One of the most famous sky scrapers in the world!',
         location: {
@@ -14,21 +14,24 @@ const DUMMY_PLACES = [
         address: '20 W 34th St, New York, NY 10001',
         creator: 'u1'
     }
-]
+];
 
 router.get('/:pid', (req, res, next) => {
     const placeId = req.params.id;
+
     const place = DUMMY_PLACES.find(p => {
-        return p.id === placeId;
+        return p.pid === placeId;
     });
-    res.json({place}); //=> {place } === { place : place}
+    res.json({ place }); //=> {place } === { place : place}
 }) 
 
-router.get('user/:uid', (req, res, next) => {
+router.get('/user/:uid', (req, res, next) => {
     const userId = req.params.uid;
+    console.log(userId)
     const place = DUMMY_PLACES.find(p => {
         return p.creator === userId;
     });
+    console.log(place)
     res.json({place}); 
 }) 
 
