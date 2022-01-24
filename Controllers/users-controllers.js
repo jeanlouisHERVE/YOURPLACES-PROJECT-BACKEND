@@ -1,4 +1,5 @@
 const { v4: uuidv4 } = require('uuid');
+const { validationResult } = require('express-validator');
 
 const { get } = require("express/lib/response");
 
@@ -18,6 +19,9 @@ const getUsers = (req, res, next) => {
 }; 
 
 const signup = (req, res, next) => {
+    if (errors.isEmpty()) {
+        throw new HttpError('invalid inputs passed, please check your data', 422)
+    }
     const { name, email, password} = req.body;
 
     const hasUser = DUMMY_USERS.find(u => u.email === email)
