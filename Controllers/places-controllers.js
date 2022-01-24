@@ -2,6 +2,8 @@ const { v4: uuidv4 } = require('uuid');
 const { validationResult } = require('express-validator')
 
 const HttpError = require('../models/http-error')
+const getCoordsForAddress = require('../Util/location');
+const { add } = require('nodemon/lib/rules');
 
 let DUMMY_PLACES = [
     {
@@ -47,14 +49,22 @@ const getPlacesByUserId =  (req, res, next) => {
     res.json({places}); 
 };
 
-const createPlace = (req, res, next) => {
+const createPlace = async (req, res, next) => {
     const errors = validationResult(req);
     if (errors.isEmpty()) {
         // res.status(422)
-        throw new HttpError('invalid inputs passed, please check your data', 422)
+        next(new HttpError('invalid inputs passed, please check your data', 422))
     }
 
-    const {title, description, coordinates, address, creator} = req.body;
+    const {title, description, address, creator} = req.body;
+
+    let coordinates;
+    try {
+        coordinates= await getCoordsForAddress(address);
+    } catch (error) {
+        return next(error); 
+    }
+   
     //const title = req.body.title
     const createdPlace = {
         id: uuidv4(),
