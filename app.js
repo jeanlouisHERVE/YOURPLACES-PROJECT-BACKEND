@@ -1,6 +1,6 @@
 const express = require('express');
 const bodyParser = require('body-parser');
-const mongoose = require('mongoose')
+const mongoose = require('mongoose');
 
 const placesRoutes = require('./routes/places-route');
 const usersRoutes = require('./routes/users-route');
@@ -27,10 +27,10 @@ app.use((error, req, res, next) => {
 })
 
 mongoose
-    .connect("mongodb+srv://Amaranth78:admin123456>@cluster0.abqdr.mongodb.net/places?retryWrites=true&w=majority")
+    .connect('mongodb+srv://Amaranth78:admin123456@cluster0.abqdr.mongodb.net/YourPlaces?retryWrites=true&w=majority')
     .then(() => {
         app.listen(5000) 
     })
     .catch(err => {
-
+        console.log(err);
     })
