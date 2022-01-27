@@ -5,11 +5,19 @@ const mongoose = require('mongoose');
 const placesRoutes = require('./routes/places-route');
 const usersRoutes = require('./routes/users-route');
 const HttpError = require('./models/http-error');
+const { append } = require('express/lib/response');
 
 const app = express()
 
 app.use(bodyParser.json())
 
+// to resolve any CORS problem
+app.use((req,res,next) => {
+    res.setHeader('Access-Control-Allow-Origin', '*');
+    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-requested-With, Content-Type, Accept, Authorization');
+    res.setHeader('Access-Control-Allow-Methods', 'GET, POST, PATCH, DELETE')
+    next()
+})
 app.use('/api/places', placesRoutes); // => /api/places...
 app.use('/api/users', usersRoutes);
 
@@ -27,7 +35,7 @@ app.use((error, req, res, next) => {
 })
 
 mongoose
-    .connect('mongodb+srv://Amaranth78:admin123456@cluster0.abqdr.mongodb.net/YourPlaces?retryWrites=true&w=majority')
+    .connect('mongodb+srv://Amaranth78:admin123456@cluster0.abqdr.mongodb.net/YourPlacesMern?retryWrites=true&w=majority')
     .then(() => {
         app.listen(5000) 
     })
