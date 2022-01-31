@@ -15,7 +15,7 @@ const getPlaceById = async (req, res, next) => {
 
     try {
         place = await Place.findById(placeId);
-    } catch {
+    } catch (err) {
         const error = new HttpError (
             'Something went wrong, Could not find a place',
             500
@@ -106,6 +106,7 @@ const createPlace = async (req, res, next) => {
     let user;
     try {
       user = await User.findById(creator);
+      console.log(user)
     } catch (err) {
       const error = new HttpError('Creating place failed, please try again', 500);
       return next(error);
@@ -172,8 +173,6 @@ const updatePlaceById = async (req, res, next) => {
         );
         return next(error)
     }
-   
-
     res.status(200).json({place : place.toObject({getters: true})})
 };
 
