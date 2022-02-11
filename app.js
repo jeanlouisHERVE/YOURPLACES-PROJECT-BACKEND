@@ -1,3 +1,6 @@
+const fs = require('fs'); // allow to interract with files and also to delete them
+const path = require('path');
+
 const express = require('express');
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -10,6 +13,8 @@ const { append } = require('express/lib/response');
 const app = express()
 
 app.use(bodyParser.json())
+
+app.use('/uploads/images', express.static(path.join('uploads', 'images')));
 
 // to resolve any CORS problem
 app.use((req,res,next) => {
@@ -27,6 +32,11 @@ app.use((req, res, next) => {
 });
 
 app.use((error, req, res, next) => {
+    if (req.file) {
+        fs.unlink(req.file.path, () => {
+            console.log(err);
+        });
+    }
     if (res.headerSent) {
         return next(error)
     }

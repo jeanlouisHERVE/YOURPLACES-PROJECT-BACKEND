@@ -51,7 +51,7 @@ const signup = async (req, res, next) => {
     const createdUser = new User ({
         name,
         email,
-        image : 'https://www.francetvinfo.fr/pictures/E6HVWhqBvpsAmkL3pc2UnKQ5JSg/750x750/2019/12/23/phpORxWfM.jpg',
+        image : req.file.path,
         password,
         places: []
     });
