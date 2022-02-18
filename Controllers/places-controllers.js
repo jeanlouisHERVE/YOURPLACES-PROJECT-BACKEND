@@ -106,7 +106,7 @@ const createPlace = async (req, res, next) => {
   
     let user;
     try {
-      user = await User.findById(creator);
+      user = await User.findById(req.userData.userId);
       console.log(user)
     } catch (err) {
       const error = new HttpError('Creating place failed, please try again', 500);
