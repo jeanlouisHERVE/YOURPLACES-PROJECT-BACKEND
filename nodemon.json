@@ -1,0 +1,9 @@
+{
+    "env": {
+        "DB_USER": "Amaranth78",
+        "DB_PASSWORD": "admin123456",
+        "DB_NAME": "YourPlacesMern",
+        "API_KEY":"AIzaSyBQD4vyWBXSj810jPU39VjyK2XxARpmR0c",
+        "JWT_KEY": "supersecret_dont_share"
+    }
+}
